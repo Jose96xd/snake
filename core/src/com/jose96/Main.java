@@ -9,19 +9,26 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	
+
+    Map map;
+    Snake snake;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		map = new Map();
+		snake = new Snake(map);
+//        map.draw(batch);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0.5f, 0.5f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
+//		batch.draw(img, 0, 0);
+		map.draw(batch);
 		batch.end();
 	}
 	
