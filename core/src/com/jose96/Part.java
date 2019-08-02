@@ -6,9 +6,9 @@ public class Part {
     public int y;
 
 
-    public Part(int x, int y){
+    public Part(int x, int y){  //constructor de partes
 
-        this.x = x;
+        this.x = x;//Recibe dos parámetros
         this.y = y;
 
     }
