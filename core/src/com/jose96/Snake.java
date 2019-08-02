@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Snake {
 
-    public enum Direction {
+    public enum Direction {  //Enumerado
         UP, DOWN, LEFT, RIGHT
     }
 
@@ -25,7 +25,7 @@ public class Snake {
     ArrayList<Part> body = new ArrayList<>(); //Declarar e instanciar pero sin rellenar
     //Esto es una lista en la que guardo y voy añadiendo las partes de la serpiente
 
-    private static final float MAX_TICK = 0.2f;
+    private static final float MAX_TICK = 0.05f;
     private float tick;
     private Direction direction = Direction.UP;
 
@@ -45,6 +45,15 @@ public class Snake {
         body.add(new Part(11, 10));
         body.add(new Part(12, 10));
         body.add(new Part(13, 10));
+        body.add(new Part(14, 10));
+        body.add(new Part(15, 10));
+        body.add(new Part(16, 10));
+        body.add(new Part(17, 10));
+        body.add(new Part(18, 10));
+        body.add(new Part(19, 10));
+        body.add(new Part(20, 10));
+        body.add(new Part(21, 10));
+        body.add(new Part(22, 10));
 
     }
 
@@ -96,16 +105,16 @@ public class Snake {
     }
 
     public void input() {
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) && direction != Direction.DOWN) {
             direction = Direction.UP;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && direction != Direction.UP) {
             direction = Direction.DOWN;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && direction != Direction.RIGHT) {
             direction = Direction.LEFT;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && direction != Direction.LEFT) {
             direction = Direction.RIGHT;
         }
     }
