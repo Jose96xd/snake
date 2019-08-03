@@ -24,7 +24,6 @@ public class Map {
         wallTexture = new Texture("grassBlock_hit.png");
         wallSprite = new Sprite(wallTexture);  //Asigno imágen a la textura y textura al sprite
 
-
         for (int i = 0; i < MAP_SIZE; i++) {  //Bucle de rellenado para saber que es pared y que no
             map[i][0] = 1;
             map[i][MAP_SIZE - 1] = 1;

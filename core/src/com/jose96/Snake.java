@@ -53,8 +53,11 @@ public class Snake {
         body.add(new Part(19, 10));
         body.add(new Part(20, 10));
         body.add(new Part(21, 10));
-        body.add(new Part(22, 10));
-
+        body.add(new Part(24, 10));
+        body.add(new Part(25, 10));
+        body.add(new Part(26, 10));
+        body.add(new Part(27, 10));
+        body.add(new Part(28, 10));
     }
 
     public void draw(SpriteBatch spriteBatch){
@@ -86,22 +89,71 @@ public class Snake {
     }
 
     private void move() {
-        Part headPart = body.get(body.size() - 1);
+        Part headPart = body.get(body.size() - 1);  // todo Clave de hito 1 y 2
+        Part bodyPart = body.get(0);
+        boolean collision = false;
         switch (direction){
             case UP:
-                body.add(new Part(headPart.x, headPart.y + 1));
+                for (int i = 0; i < (body.size() -1); i++) {
+                    if ( headPart.x == body.get(i).x && (headPart.y + 1) == body.get(i).y) {
+                        collision = true;
+                    }
+                }
+                if (map.map[headPart.x][headPart.y + 1] == 1) {
+                    collision = true;
+                }
+                if (!collision) {
+                    body.add(new Part(headPart.x, headPart.y + 1));
+                }
                 break;
+
             case DOWN:
-                body.add(new Part(headPart.x, headPart.y - 1));
+                for (int i = 0; i < (body.size() -1); i++) {
+                    if ( headPart.x == body.get(i).x && (headPart.y - 1) == body.get(i).y) {
+                        collision = true;
+                    }
+                }
+                if (map.map[headPart.x][headPart.y - 1] == 1) {
+                    collision = true;
+                }
+                if (!collision) {
+                    body.add(new Part(headPart.x, headPart.y - 1));
+                }
                 break;
+
             case RIGHT:
-                body.add(new Part(headPart.x + 1, headPart.y));
+                for (int i = 0; i < (body.size() -1); i++) {
+                    if ( (headPart.x + 1) == body.get(i).x && headPart.y == body.get(i).y) {
+                        collision = true;
+                    }
+                }
+                if (map.map[headPart.x + 1][headPart.y] == 1) {
+                    collision = true;
+                }
+                if (!collision) {
+                    body.add(new Part(headPart.x + 1, headPart.y));
+                }
                 break;
+
             case LEFT:
-                body.add(new Part(headPart.x - 1, headPart.y));
+                for (int i = 0; i < (body.size() -1); i++) {
+                    if ( (headPart.x - 1) == body.get(i).x && headPart.y == body.get(i).y) {
+                        collision = true;
+                    }
+                }
+                if (map.map[headPart.x - 1][headPart.y] == 1) {
+                    collision = true;
+                }
+                if (!collision) {
+                    body.add(new Part(headPart.x - 1, headPart.y));
+                }
                 break;
+
         }
-        body.remove(0);
+        if (!collision){
+            body.remove(0);
+
+        }
     }
 
     public void input() {
@@ -118,6 +170,8 @@ public class Snake {
             direction = Direction.RIGHT;
         }
     }
+//    Zona de prueba;
+
 
 
 }
