@@ -11,6 +11,9 @@ public class Main extends ApplicationAdapter {
 	SpriteBatch batch; //Canvas donde se pinta
     Map map;
     Snake snake;
+    //Declaracion pez
+    Fish fish;
+    //Declaracion pez
 
 
 	@Override
@@ -18,6 +21,14 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		map = new Map();
 		snake = new Snake(map);
+		//Constructor prueba pez
+		fish = new Fish(map);
+		//Constructor prueba pez
+
+		for (int i = 0; i < 100; i++) {
+			System.out.println(	fish.randomNumber());
+		}
+
 	}
 
 	@Override
@@ -27,6 +38,9 @@ public class Main extends ApplicationAdapter {
 		batch.begin();
 		map.draw(batch);
 		snake.draw(batch);
+		//Prueba pez
+		fish.draw(batch);
+		//Prueba pez
 		batch.end();
 
 		snake.update(Gdx.graphics.getDeltaTime());

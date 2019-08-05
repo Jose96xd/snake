@@ -42,8 +42,8 @@ public class Snake {
         //Aquí añadimos 4 partes
         //A lista body, añado (add) nueva parte (llamada a constructor Part) y le asigno valores a x e y
         body.add(new Part(10, 10));
-        body.add(new Part(11, 10));
-        body.add(new Part(12, 10));
+        body.add(new Part(11, 10));  // todo lo de abajo
+        body.add(new Part(12, 10)); //Cómo llegan estas x e ys al array para saber dónde esan???
         body.add(new Part(13, 10));
         body.add(new Part(14, 10));
         body.add(new Part(15, 10));
@@ -53,11 +53,10 @@ public class Snake {
         body.add(new Part(19, 10));
         body.add(new Part(20, 10));
         body.add(new Part(21, 10));
+        body.add(new Part(22, 10));
+        body.add(new Part(23, 10));
         body.add(new Part(24, 10));
         body.add(new Part(25, 10));
-        body.add(new Part(26, 10));
-        body.add(new Part(27, 10));
-        body.add(new Part(28, 10));
     }
 
     public void draw(SpriteBatch spriteBatch){
@@ -69,8 +68,14 @@ public class Snake {
                 sprite = headSprite;
             } else {
                 sprite = bodySprite;
-                sprite.setColor(0.2f, 0.8f, 0.2f, 1);
 
+                //Colores alternantes entre las piezas
+                if (i % 2 == 0) {
+                    sprite.setColor(0.8f, 1, 0.5f, 1);
+                } else {
+                    sprite.setColor(0.2f, 0.8f, 0.2f, 1);
+                }
+                //Colores alternantes entre las piezas
             }
             sprite.setBounds(part.x * Map.MAP_OFFSET + Map.MAP_FIX_X, part.y * Map.MAP_OFFSET + Map.MAP_FIX_Y, Map.TILE_SIZE, Map.TILE_SIZE);
             sprite.draw(spriteBatch);
@@ -89,9 +94,10 @@ public class Snake {
     }
 
     private void move() {
-        Part headPart = body.get(body.size() - 1);  // todo Clave de hito 1 y 2
-        Part bodyPart = body.get(0);
+        Part headPart = body.get(body.size() - 1);
+        Part bodyPart = body.get(0);  //Para crear más culos
         boolean collision = false;
+
         switch (direction){
             case UP:
                 for (int i = 0; i < (body.size() -1); i++) {
@@ -102,6 +108,13 @@ public class Snake {
                 if (map.map[headPart.x][headPart.y + 1] == 1) {
                     collision = true;
                 }
+                //Crecimiento anal si come pez  // todo revisar
+
+                if (map.map[headPart.x][headPart.y] == 2) {
+                    body.add(new Part(bodyPart.x,bodyPart.y));
+                }
+
+                //Crecimiento anal si come pez
                 if (!collision) {
                     body.add(new Part(headPart.x, headPart.y + 1));
                 }
