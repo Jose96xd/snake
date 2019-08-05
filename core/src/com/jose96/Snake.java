@@ -21,6 +21,8 @@ public class Snake {
     Sprite bodySprite;
 
     Map map;  //Declarar
+    Fish fish;
+
 
     ArrayList<Part> body = new ArrayList<>(); //Declarar e instanciar pero sin rellenar
     //Esto es una lista en la que guardo y voy añadiendo las partes de la serpiente
@@ -30,8 +32,9 @@ public class Snake {
     private Direction direction = Direction.UP;
 
 
-    public Snake(Map map) { //Constructor que recibe parametro map
-        this.map = map; //Instancio el map de la clase igualandolo al recibido
+    public Snake(Map map, Fish fish) { //Constructor que recibe parametro map
+        this.map = map; //Copio la variable map de la clase igualandolo al recibido
+        this.fish = fish;
 
         headTexture = new Texture("slimeBlock.png");  //Asigno a las texturas la imágen
         bodyTexture = new Texture("slimeBlock_hit.png");
@@ -96,7 +99,9 @@ public class Snake {
     private void move() {
         Part headPart = body.get(body.size() - 1);
         Part bodyPart = body.get(0);  //Para crear más culos
+
         boolean collision = false;
+
 
         switch (direction){
             case UP:
@@ -108,13 +113,6 @@ public class Snake {
                 if (map.map[headPart.x][headPart.y + 1] == 1) {
                     collision = true;
                 }
-                //Crecimiento anal si come pez  // todo revisar
-
-                if (map.map[headPart.x][headPart.y] == 2) {
-                    body.add(new Part(bodyPart.x,bodyPart.y));
-                }
-
-                //Crecimiento anal si come pez
                 if (!collision) {
                     body.add(new Part(headPart.x, headPart.y + 1));
                 }
@@ -163,7 +161,8 @@ public class Snake {
                 break;
 
         }
-        if (!collision){
+        boolean touchFish = headPart.x == fish.fishPart.x && headPart.y == fish.fishPart.y;
+        if (!collision && !touchFish){
             body.remove(0);
 
         }

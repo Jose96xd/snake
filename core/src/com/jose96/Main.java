@@ -20,10 +20,12 @@ public class Main extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		map = new Map();
-		snake = new Snake(map);
 		//Constructor prueba pez
 		fish = new Fish(map);
 		//Constructor prueba pez
+		//Instanciar en orden de uso
+		snake = new Snake(map, fish);
+
 
 		for (int i = 0; i < 100; i++) {
 			System.out.println(	fish.randomNumber());
