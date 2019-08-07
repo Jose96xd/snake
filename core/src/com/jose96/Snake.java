@@ -33,6 +33,12 @@ public class Snake {
     private Direction direction = Direction.UP;
     public int score;  //Declaración de la variable puntuación
 
+    //todo revisar
+    //Boolean para verificar muerte
+    public boolean dead;
+    //Boolean para verificar muerte
+    //todo revisar
+
 
     public Snake(Map map, Fish fish) { //Constructor que recibe parametro map y fish
         this.map = map; //Copio la variable map de la clase igualandolo al recibido
@@ -56,11 +62,6 @@ public class Snake {
 //        body.add(new Part(18, 10));
 //        body.add(new Part(19, 10));
 //        body.add(new Part(20, 10));
-//        body.add(new Part(21, 10));
-//        body.add(new Part(22, 10));
-//        body.add(new Part(23, 10));
-//        body.add(new Part(24, 10));
-//        body.add(new Part(25, 10));
     }
 
 
@@ -94,7 +95,7 @@ public class Snake {
         if (tick > maxTick) {  //Aquí con una variable (tick) vamos moviendo la snake cada vez que supera el valor que quramos
             tick = 0;          //A mayor maxTick más lenta irá la snake
             move();
-        } else {
+        } else if (!dead) {
             tick += delta;  //Cada vez que no ha pasado suficiente tiempo para que la serpiente se mueva le sumamos delta(algo de fps fijo)
         }
 
@@ -114,7 +115,7 @@ public class Snake {
                         collision = true;
                     }
                 }
-                //Comprueba que dentro de map no haya un 1 que correspondería a un muro
+                //Comprueba que dentro de map (del array map) no haya un 1 que correspondería a un muro
                 //En caso de haberlo collision se vuelve true
                 if (map.map[headPart.x][headPart.y + 1] == 1) {
                     collision = true;
@@ -168,6 +169,14 @@ public class Snake {
                 break;
 
         }
+        //todo revisar
+        //Prueba uno del boolean muerte como método de matar la partida
+        if (collision) {
+            dead = true;
+        }
+        //Prueba uno del boolean muerte como método de matar la partida
+        //todo revisar
+
         //Instanciamos un boolean que corresponde a comerse el pez
         boolean touchFish = headPart.x == fish.fishPart.x && headPart.y == fish.fishPart.y;
         if (touchFish) {  //con el boolean hacemos que el pez reaparezca
@@ -187,16 +196,17 @@ public class Snake {
 
     public void input() {  //Este método comprueba el imput de las flechas y les asigna una dirección
         //Para poder cambiar la dirreción (girar) debe ser introducida la dirección deseada Y NO IR ACTUALMENTE EN LA DIRECCIÓN CONTRARIA
-        if (Gdx.input.isKeyPressed(Input.Keys.UP) && direction != Direction.DOWN) {
+        Part headPart = body.get(body.size() - 1);
+        if(Gdx.input.isKeyPressed(Input.Keys.UP) && direction != Direction.DOWN && map.map[headPart.x][headPart.y + 1] != 1) {
             direction = Direction.UP;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && direction != Direction.UP) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN) && direction != Direction.UP && map.map[headPart.x][headPart.y - 1] != 1) {
             direction = Direction.DOWN;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && direction != Direction.RIGHT) {
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && direction != Direction.RIGHT && map.map[headPart.x - 1][headPart.y] != 1) {
             direction = Direction.LEFT;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && direction != Direction.LEFT) {
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && direction != Direction.LEFT && map.map[headPart.x + 1][headPart.y] != 1) {
             direction = Direction.RIGHT;
         }
     }

@@ -18,6 +18,9 @@ public class Main extends ApplicationAdapter {
 	BitmapFont creatorsBitmapFont;  //Declaración de un mapa de bits utilizable para: Creadores
 	BitmapFont scoreBitmapFont;  //Declaración de un mapa de bits utilizable para: Puntuación
 	BitmapFont inputsBitmapFont;  //Declaración de un mapa de bits utilizable para: Controles
+	//Pantalla para cuando muera todo implementar la muerte
+	BitmapFont deadBitmapFont;  //Declaración del mapa de bits que aparecere al morir
+	//Pantalla para cuando muera todo implementar la muerte
 
 
 	@Override
@@ -40,6 +43,10 @@ public class Main extends ApplicationAdapter {
 
 		inputsBitmapFont = new BitmapFont();  //Instanciamiento del mapa de bits: Controles
 		inputsBitmapFont.setColor(0.0f,0.8f,0.2f,1);  //Adivina de que es este color genio
+
+		deadBitmapFont = new BitmapFont();  //Instanciamiento del mensaje de muerte
+		deadBitmapFont.setColor(0.9f,0.6f,0.1f,1);  //Color del mensaje de muerte
+		deadBitmapFont.getData().setScale(4.5f);  //Agrandamiento del mensaje de muerte
 	}
 
 
@@ -59,8 +66,19 @@ public class Main extends ApplicationAdapter {
 		creatorsBitmapFont.draw(batch, ("By: Lavamancer and Jose96"  ),( Gdx.graphics.getWidth() -300), 60);
 		//Puntuación dinámica
 		scoreBitmapFont.draw(batch, ("You have " + snake.score + " points"  ),( Gdx.graphics.getWidth() - 200), Gdx.graphics.getHeight() - 20);
-		//Controles arriba a la izquie
+		//Controles arriba a la izquierda
 		inputsBitmapFont.draw(batch, ("Controles:\n\nFlechas-->Moverse\nR--->Reiniciar"  ),50, Gdx.graphics.getHeight() - 20);
+
+		//todo revisar
+		//Pintar la pantalla de muerte si se cumple la condición dead
+		if(snake.dead) {
+			deadBitmapFont.draw(batch, "YOU ARE DEAD!!!",(Gdx.graphics.getWidth() / 2 - 275),(Gdx.graphics.getHeight() / 2 + 100));
+			deadBitmapFont.draw(batch, "¨R¨ TO RESTART",(Gdx.graphics.getWidth() / 2 - 235),(Gdx.graphics.getHeight() / 2 - 50));
+		}  //todo a esto se refería lava???
+		//Pintar la pantalla de muerte si se cumple la condición dead
+		//todo revisar
+
+
 
 		batch.end();  //Fin del canvas
 
