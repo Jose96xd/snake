@@ -67,7 +67,7 @@ public class Main extends ApplicationAdapter {
 		//Puntuación dinámica
 		scoreBitmapFont.draw(batch, ("You have " + snake.score + " points"  ),( Gdx.graphics.getWidth() - 200), Gdx.graphics.getHeight() - 20);
 		//Controles arriba a la izquierda
-		inputsBitmapFont.draw(batch, ("Controles:\n\nFlechas-->Moverse\nR--->Reiniciar"  ),50, Gdx.graphics.getHeight() - 20);
+		inputsBitmapFont.draw(batch, ("Controls:\n\nArrows-->Move\nR--->Restart"  ),50, Gdx.graphics.getHeight() - 20);
 
 		//Pintar la pantalla de muerte si se cumple la condición dead
 		if(snake.dead) {
