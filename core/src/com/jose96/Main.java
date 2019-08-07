@@ -95,6 +95,5 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void dispose () {  //Ni idea
 		batch.dispose();
-		bi
 	}
 }
