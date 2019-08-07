@@ -13,3 +13,4 @@
 10.Añadir la posibilidad de muerte
 11.Añadir un letrero gigante que te salte al morir-->Revisar
 12.Arreglar controles en caso de que el cuerpo este a un lado pero se bloque el mov vertical
+13.Hemos creado una nueva variable newDirection asi que hay que entender cómo funciona

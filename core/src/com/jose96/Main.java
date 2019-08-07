@@ -69,14 +69,12 @@ public class Main extends ApplicationAdapter {
 		//Controles arriba a la izquierda
 		inputsBitmapFont.draw(batch, ("Controles:\n\nFlechas-->Moverse\nR--->Reiniciar"  ),50, Gdx.graphics.getHeight() - 20);
 
-		//todo revisar
 		//Pintar la pantalla de muerte si se cumple la condición dead
 		if(snake.dead) {
 			deadBitmapFont.draw(batch, "YOU ARE DEAD!!!",(Gdx.graphics.getWidth() / 2 - 275),(Gdx.graphics.getHeight() / 2 + 100));
 			deadBitmapFont.draw(batch, "¨R¨ TO RESTART",(Gdx.graphics.getWidth() / 2 - 235),(Gdx.graphics.getHeight() / 2 - 50));
-		}  //todo a esto se refería lava???
+		}
 		//Pintar la pantalla de muerte si se cumple la condición dead
-		//todo revisar
 
 
 

@@ -31,6 +31,7 @@ public class Snake {
     private float maxTick = 0.2f;
     private float tick;  //Tick y MAX_TICK son para hacer el renderizado y los pasos de tiempo
     private Direction direction = Direction.UP;
+    private Direction newDirection = Direction.UP;
     public int score;  //Declaración de la variable puntuación
 
     //todo revisar
@@ -105,7 +106,7 @@ public class Snake {
         Part headPart = body.get(body.size() - 1);  //Declaramos e iniciamos una parte llamada "headPart" que corresponde a la cabeza
 
         boolean collision = false;  //Declaramos e instanciamos un boolean que corresponde a si hay o no colisión
-
+        direction = newDirection;
 
         switch (direction){  //Usamos un switch que hace referencia aun enumerado del principio
             case UP:
@@ -198,16 +199,16 @@ public class Snake {
         //Para poder cambiar la dirreción (girar) debe ser introducida la dirección deseada Y NO IR ACTUALMENTE EN LA DIRECCIÓN CONTRARIA
         Part headPart = body.get(body.size() - 1);
         if(Gdx.input.isKeyPressed(Input.Keys.UP) && direction != Direction.DOWN && map.map[headPart.x][headPart.y + 1] != 1) {
-            direction = Direction.UP;
+            newDirection = Direction.UP;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DOWN) && direction != Direction.UP && map.map[headPart.x][headPart.y - 1] != 1) {
-            direction = Direction.DOWN;
+            newDirection = Direction.DOWN;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && direction != Direction.RIGHT && map.map[headPart.x - 1][headPart.y] != 1) {
-            direction = Direction.LEFT;
+            newDirection = Direction.LEFT;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && direction != Direction.LEFT && map.map[headPart.x + 1][headPart.y] != 1) {
-            direction = Direction.RIGHT;
+            newDirection = Direction.RIGHT;
         }
     }
 
