@@ -12,5 +12,5 @@
 1. Añadir controles del juego arriba a la izquierda-->**Done**
 1. Añadir la posibilidad de muerte
 1. Añadir un letrero gigante que te salte al morir-->Revisar
-1. Arreglar controles en caso de que el cuerpo este a un lado pero se bloque el mov vertical
-1. Hemos creado una nueva variable newDirection asi que hay que entender cómo funciona
+1. Arreglar controles en caso de que el cuerpo este a un lado pero, se bloque el mov vertical
+1. Hemos creado una nueva variable newDirection así que hay que entender cómo funciona
